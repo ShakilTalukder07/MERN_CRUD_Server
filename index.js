@@ -33,11 +33,11 @@ async function run() {
             res.send(items)
         });
 
-        app.get('/items/:id', async (req, res) => {
-            const id = req.params.id
-            const query = { _id: ObjectId(id) }
-            const product = await itemsCollection.findOne(query)
-            res.send(product)
+        app.delete('/items/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const result = await itemsCollection.deleteOne(filter);
+            res.send(result);
         });
 
 
